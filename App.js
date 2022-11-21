@@ -20,3 +20,15 @@ export default class HelloWorld extends Component {
     // initialized the state to an empty string (the state will change)
     this.state = { text: "" };
   }
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Start">
+          {/* adding list of Stack.Screen here */}
+          <Stack.Screen name="Start" component={Start} />
+          <Stack.Screen name="Chat" component={Chat} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+}
