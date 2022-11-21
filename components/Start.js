@@ -21,3 +21,6 @@ const backgroundColors = {
 export default class Start extends React.Component {
   constructor(props) {
     super(props);
+    // empty string assigned to the state for the user's name and color
+    this.state = { name: "", color: "" };
+  }
