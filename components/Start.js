@@ -16,3 +16,8 @@ const backgroundColors = {
   grey: "#8A95A5",
   green: "#B9C6AE",
 };
+
+// defined Start react class component to create the start page
+export default class Start extends React.Component {
+  constructor(props) {
+    super(props);
