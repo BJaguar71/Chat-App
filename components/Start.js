@@ -7,6 +7,7 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 
 // colors to choose before starting the chat
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
   },
   startWrapper: {
     backgroundColor: "#FFFFFF",
-    marginTop: 250,
+    marginTop: 150,
     height: "40%",
     borderRadius: 10,
     flexDirection: "column",
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
     paddingVertical: "6%",
   },
   input: {
-    ontSize: 16,
+    fontSize: 16,
     fontWeight: "300",
     color: "#757083",
     opacity: 50,
@@ -155,28 +156,28 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   colors: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  }, 
+    flexDirection: "row",
+    justifyContent: "center",
+  },
   color: {
     borderRadius: 20,
     width: 40,
     height: 40,
     marginTop: 10,
     marginRight: 25,
-  }, 
+  },
   button: {
     height: 60,
-    width: '88%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#757083',
+    width: "88%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#757083",
     borderRadius: 8,
     marginTop: 10,
-  }, 
+  },
   buttonText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#FFFFFF',
-  }
+    fontWeight: "600",
+    color: "#FFFFFF",
+  },
 });
