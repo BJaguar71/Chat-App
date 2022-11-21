@@ -14,7 +14,7 @@ import Chat from './components/Chat';
 // create the navigator and assigning it to a variable
 const Stack = createStackNavigator();
 
-export default class HelloWorld extends Component {
+export default class ChatApp extends Component {
   constructor(props) {
     super(props);
     // initialized the state to an empty string (the state will change)
