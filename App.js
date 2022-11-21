@@ -11,3 +11,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Start from './components/Start';
 import Chat from './components/Chat';
 
+// create the navigator and assigning it to a variable
+const Stack = createStackNavigator();
+
