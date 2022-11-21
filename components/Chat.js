@@ -7,3 +7,5 @@ export default class Chat extends React.Component {
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({title: name})
   }
+    // setting the color property for th background color in chat screen
+    let color = this.props.route.params.color;
