@@ -17,3 +17,6 @@ const Stack = createStackNavigator();
 export default class HelloWorld extends Component {
   constructor(props) {
     super(props);
+    // initialized the state to an empty string (the state will change)
+    this.state = { text: "" };
+  }
