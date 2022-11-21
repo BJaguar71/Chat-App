@@ -100,3 +100,83 @@ export default class Start extends React.Component {
   }
 }
 
+// styling here
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "space-between",
+    height: "100%",
+    textAlign: "center",
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+  },
+  title: {
+    fontSize: 45,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    textAlign: "center",
+    paddingTop: 50,
+  },
+  startWrapper: {
+    backgroundColor: "#FFFFFF",
+    marginTop: 250,
+    height: "40%",
+    borderRadius: 10,
+    flexDirection: "column",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: "6%",
+  },
+  input: {
+    ontSize: 16,
+    fontWeight: "300",
+    color: "#757083",
+    opacity: 50,
+    height: 60,
+    width: "88%",
+    borderColor: "lightgrey",
+    borderWidth: 2,
+    borderRadius: 5,
+    padding: "5%",
+  },
+  colorWrapper: {
+    width: "88%",
+    justifyContent: "center",
+  },
+  textColor: {
+    textAlign: "center",
+    fontSize: 16,
+    fontWeight: "300",
+    color: "#757083",
+    marginTop: 10,
+  },
+  colors: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  }, 
+  color: {
+    borderRadius: 20,
+    width: 40,
+    height: 40,
+    marginTop: 10,
+    marginRight: 25,
+  }, 
+  button: {
+    height: 60,
+    width: '88%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#757083',
+    borderRadius: 8,
+    marginTop: 10,
+  }, 
+  buttonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF',
+  }
+});
