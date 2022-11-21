@@ -22,3 +22,15 @@ export default class Chat extends React.Component {
   }
 }
 
+// StyleSheet
+const styles = StyleSheet.create({
+  chatContainer: {
+    flex: 1,
+    justifyContent: "center", 
+    alignItems: "center"
+  },
+  button: {
+    color: "#FFF", 
+    fontSize: 24
+  }
+})
