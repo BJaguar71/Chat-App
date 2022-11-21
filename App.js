@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// import react native gesture handler
+import 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   container: {
