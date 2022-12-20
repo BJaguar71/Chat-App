@@ -64,14 +64,15 @@ export default class Chat extends React.Component {
     );
   }
 
+  render() {
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
     // takes the name from the variable above and give it to the title of the Chat screen
     this.props.navigation.setOptions({ title: name });
-  }
-  render() {
+
     // setting the color property for th background color in chat screen
     let color = this.props.route.params.color;
+
     return (
       <View style={{ flex: 1, backgroundColor: color }}>
         <GiftedChat
