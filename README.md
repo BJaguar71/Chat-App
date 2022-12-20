@@ -15,7 +15,7 @@ App's features:
 
 ## Setting up development environment:
 1. Clone the repository from [here](https://github.com/BJaguar71/Chat-App)
-2. Installing Wxpo CLI: run `npm install -g expo-cli`
+2. Installing Expo CLI: run `npm install -g expo-cli`
 3. Create an Expo account [here](https://expo.dev/) and login at the terminal with `expo login`
 4. Install [Expo Go](https://expo.dev/client) from your Handy's PlayStore
 5. Start the project with `npx expo start`
