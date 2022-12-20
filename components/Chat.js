@@ -83,6 +83,10 @@ export default class Chat extends React.Component {
           user={{
             _id: 1,
           }}
+          // accessibility props
+          accessible={true}
+          accessibilityLabel="Chat input field"
+          accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
         />
       </View>
     );
