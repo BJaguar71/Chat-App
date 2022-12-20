@@ -88,6 +88,10 @@ export default class Chat extends React.Component {
           accessibilityLabel="Chat input field"
           accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
         />
+        {/* for android devices / to unhide text input when typing */}
+        {Platform.OS === "android" ? (
+          <KeyboardAvoidingView behavior="height" />
+        ) : null}
       </View>
     );
   }
