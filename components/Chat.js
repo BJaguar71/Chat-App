@@ -20,6 +20,19 @@ export default class Chat extends React.Component {
     };
   }
   componentDidMount() {
+    // setting the state with static message to be able to see each UI element displayed on the screen right away
+    this.setState({
+      messages: [
+        {
+          _id: 1,
+          text: "Hello developer",
+          createdAt: new Date(),
+          user: {
+            _id: 2,
+            name: "React Native",
+            avatar: "https://placeimg.com/140/140/any",
+          },
+        },
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: name });
