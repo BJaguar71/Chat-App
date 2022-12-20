@@ -33,6 +33,16 @@ export default class Chat extends React.Component {
             avatar: "https://placeimg.com/140/140/any",
           },
         },
+        // adding system message
+        {
+          _id: 2,
+          text: "You've entered the Chat.",
+          createdAt: new Date(),
+          system: true,
+        },
+      ],
+    });
+  }
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: name });
