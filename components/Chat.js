@@ -66,6 +66,7 @@ export default class Chat extends React.Component {
 
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
+    // takes the name from the variable above and give it to the title of the Chat screen
     this.props.navigation.setOptions({ title: name });
   }
   render() {
