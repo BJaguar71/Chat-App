@@ -50,6 +50,20 @@ export default class Chat extends React.Component {
     }));
   }
 
+  // creating renderBubble function
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: "#4a676f",
+          },
+        }}
+      />
+    );
+  }
+
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: name });
