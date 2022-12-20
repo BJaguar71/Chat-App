@@ -1,5 +1,15 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+  KeyboardAvoidingView,
+} from "react-native";
+
+// importing Gifted-Chat library
+import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 export default class Chat extends React.Component {
   componentDidMount() {
