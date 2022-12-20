@@ -84,6 +84,11 @@ export default class Start extends React.Component {
               </View>
             </View>
             <TouchableOpacity
+              // accessibility props
+              accessible={true}
+              accessibilityLabel="Start chat"
+              accessibilityHint="By pressing the Start chat button you will be redirected to Chat screen to start chatting."
+              accessibilityRole="button"
               style={styles.button}
               onPress={() =>
                 this.props.navigation.navigate('Chat', {
