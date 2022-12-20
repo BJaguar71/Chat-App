@@ -91,7 +91,7 @@ export default class Start extends React.Component {
               accessibilityRole="button"
               style={styles.button}
               onPress={() =>
-                this.props.navigation.navigate('Chat', {
+                this.props.navigation.navigate("Chat", {
                   name: this.state.name,
                   color: this.state.color,
                 })
