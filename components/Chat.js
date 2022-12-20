@@ -76,6 +76,13 @@ export default class Chat extends React.Component {
     return (
       <View style={{ flex: 1, backgroundColor: color }}>
         <GiftedChat
+          // adding renderBubble prop to change sender's bubble color
+          renderBubble={this.renderBubble.bind(this)}
+          messages={this.state.messages}
+          onSend={(messages) => this.onSend(messages)}
+          user={{
+            _id: 1,
+          }}
         />
       </View>
     );
