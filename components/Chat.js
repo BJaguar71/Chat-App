@@ -151,6 +151,7 @@ export default class Chat extends React.Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: color }}>
+        <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
         <GiftedChat
           // adding renderBubble prop to change sender's bubble color
           renderBubble={this.renderBubble.bind(this)}
