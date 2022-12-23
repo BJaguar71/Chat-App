@@ -52,6 +52,18 @@ export default class Chat extends React.Component {
   componentDidMount() {
     // creating a references to messages in database
     this.referenceChatMessages = firebase.firestore().collection("messages");
+    // authentication
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        firebase.auth().signInAnonymously();
+      }
+      this.setState({
+        uid: user.uid,
+        messages: [],
+        user: {
+          _id: user.uid,
+          name: user.name,
+          avatar: "https://placeimg.com/140/140/any",
         },
       ],
     });
