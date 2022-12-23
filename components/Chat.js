@@ -11,6 +11,9 @@ import {
 // importing Gifted-Chat library
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+
 export default class Chat extends React.Component {
   // State initializing
   constructor() {
