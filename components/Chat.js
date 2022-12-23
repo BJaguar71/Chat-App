@@ -67,8 +67,13 @@ export default class Chat extends React.Component {
         },
         loggedInText: "",
       });
+      // reference to the firestore to get the collection
+      this.unsubscribe = this.referenceChatMessages
+        .orderBy("createdAt", "desc")
+        .onSnapshot(this.onCollectionUpdate);
     });
   }
+
   // to append new messages to the message object
   onSend(messages = []) {
     this.setState((previousState) => ({
