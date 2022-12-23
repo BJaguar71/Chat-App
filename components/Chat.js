@@ -79,6 +79,19 @@ export default class Chat extends React.Component {
     this.unsubscribe();
     this.authUnsubscribe();
   }
+  // add new messages to the database
+  addMessage = () => {
+    const message = this.state.messages[0];
+    this.referenceChatMessages.add({
+      uid: this.state.uid,
+      _id: message._id,
+      text: message.text || "",
+      createdAt: message.createdAt,
+      user: message.user,
+      image: message.image || null,
+    });
+  };
+
   // to append new messages to the message object
   onSend(messages = []) {
     this.setState((previousState) => ({
