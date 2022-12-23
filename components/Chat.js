@@ -65,7 +65,8 @@ export default class Chat extends React.Component {
           name: user.name,
           avatar: "https://placeimg.com/140/140/any",
         },
-      ],
+        loggedInText: "",
+      });
     });
   }
   // to append new messages to the message object
