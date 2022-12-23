@@ -34,7 +34,21 @@ export default class Chat extends React.Component {
       },
       loggedInText: "Please waite you're getting logged in.",
     };
+    // web app's Firebase configuration
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: "AIzaSyAVRku-7M4i87xTHqT3Zcf0m1uUF_NIwQY",
+        authDomain: "chatapp-f248f.firebaseapp.com",
+        projectId: "chatapp-f248f",
+        storageBucket: "chatapp-f248f.appspot.com",
+        messagingSenderId: "153293793325",
+        appId: "1:153293793325:web:5649b8c21d0314551d70a4",
+      });
+    }
+
+    this.referenceChatMessages = firebase.firestore().collection("messages");
   }
+
   componentDidMount() {
     // setting the state with static message to be able to see each UI element displayed on the screen right away
     this.setState({
