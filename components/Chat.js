@@ -50,25 +50,6 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    // setting the state with static message to be able to see each UI element displayed on the screen right away
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: "Hello developer",
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: "React Native",
-            avatar: "https://placeimg.com/140/140/any",
-          },
-        },
-        // adding system message
-        {
-          _id: 2,
-          text: "You've entered the Chat.",
-          createdAt: new Date(),
-          system: true,
         },
       ],
     });
