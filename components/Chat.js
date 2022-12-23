@@ -74,6 +74,11 @@ export default class Chat extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    // to stop receiving updates about the collection
+    this.unsubscribe();
+    this.authUnsubscribe();
+  }
   // to append new messages to the message object
   onSend(messages = []) {
     this.setState((previousState) => ({
