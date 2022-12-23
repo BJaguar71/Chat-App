@@ -186,4 +186,8 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 24,
   },
+  loggedInText: {
+    textAlign: "center",
+    color: "white",
+  }
 });
