@@ -25,7 +25,14 @@ export default class Chat extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: [],
+      messages: [],
+      uid: 0,
+      user: {
+        _id: "",
+        avatar: "",
+        name: "",
+      },
+      loggedInText: "Please waite you're getting logged in.",
     };
   }
   componentDidMount() {
