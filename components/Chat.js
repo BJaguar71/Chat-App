@@ -106,12 +106,8 @@ export default class Chat extends React.Component {
         _id: data._id,
         text: data.text,
         createdAt: data.createdAt.toDate(),
-        user: {
-          _id: data.user._id,
-          name: data.user.name,
-          avatar: data.user.avatar,
-        },
-        image: data.image,
+        user: data.user,
+        avatar: data.avatar,
         location: data.location || null,
       });
     });
