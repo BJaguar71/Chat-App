@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   Platform,
   KeyboardAvoidingView,
@@ -11,14 +10,11 @@ import {
 // importing Gifted-Chat library
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 
 // importing firebase
 import firebase from 'firebase';
 import firestore from 'firebase';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class Chat extends React.Component {
   // State initializing
