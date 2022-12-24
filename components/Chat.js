@@ -31,7 +31,10 @@ export default class Chat extends React.Component {
       loggedInText: "Please waite you're getting logged in.",
       location: null,
     };
+
+
     // web app's Firebase configuration
+
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyAVRku-7M4i87xTHqT3Zcf0m1uUF_NIwQY",
@@ -45,6 +48,7 @@ export default class Chat extends React.Component {
 
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
+
 
   componentDidMount() {
     // creating a references to messages in database
