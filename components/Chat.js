@@ -29,6 +29,7 @@ export default class Chat extends React.Component {
         name: "",
       },
       loggedInText: "Please waite you're getting logged in.",
+      location: null,
     };
     // web app's Firebase configuration
     if (!firebase.apps.length) {
