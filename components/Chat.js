@@ -158,7 +158,7 @@ export default class Chat extends React.Component {
           onSend={(messages) => this.onSend(messages)}
           user={{
             _id: this.state.uid,
-            avatar: 'https://placeimg.com/140/140/any',
+            avatar: '',
           }}
           // accessibility props
           accessible={true}
