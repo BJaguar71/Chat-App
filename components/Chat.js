@@ -33,6 +33,7 @@ export default class Chat extends React.Component {
         avatar: "",
         name: "",
       },
+      isConnected: false,
       loggedInText: "Please waite you're getting logged in.",
       location: null,
     };
