@@ -204,6 +204,19 @@ export default class Chat extends React.Component {
     );
   }
 
+
+  // only render the input when user is online (avoiding sending mssgs when user is offline)
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else{
+      return (
+        <InputToolbar
+        {...props} 
+        />
+      );
+    }
+  }
+
   render() {
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
