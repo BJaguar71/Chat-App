@@ -210,6 +210,9 @@ export default class Chat extends React.Component {
           right: {
             backgroundColor: "#4a676f",
           },
+          left: {
+            backgroundColor: "#fff",
+          },
         }}
       />
     );
