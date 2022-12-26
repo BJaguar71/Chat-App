@@ -98,6 +98,19 @@ export default class Chat extends React.Component {
     // load messages from asyncStorage
     this.getMessages();
 
+    // check the user's internet connection
+    NetInfo.fetch().then((connection) => {
+      if (connection.isConnected) {
+        this.setState({
+          isConnected: true,
+        });
+      } else {
+        this.setState({
+          isConnected: false,
+        });
+      }
+    });
+    
     // creating a references to messages in database
     this.referenceChatMessages = firebase
       .firestore()
