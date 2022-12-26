@@ -98,6 +98,9 @@ export default class Chat extends React.Component {
     // load messages from asyncStorage
     this.getMessages();
 
+    // delete messsage
+    this.deleteMessages();
+
     // check the user's internet connection
     NetInfo.fetch().then((connection) => {
       if (connection.isConnected) {
