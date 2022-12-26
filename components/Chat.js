@@ -158,6 +158,7 @@ export default class Chat extends React.Component {
 
   // when users send new messages:
   onCollectionUpdate = (querySnapshot) => {
+    if (!this.state.isConnected) return;
     const messages = [];
     //go through each document
     querySnapshot.forEach((doc) => {
