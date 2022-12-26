@@ -193,7 +193,8 @@ export default class Chat extends React.Component {
       messages: GiftedChat.append(previousState.messages, messages),
     }),
     () => {
-      this.addMessage();
+      const message = messages[0];
+      this.addMessage(message);
 
       // add a callback function to save new message when sent
       this.saveMessages();
