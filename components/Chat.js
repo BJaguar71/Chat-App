@@ -222,7 +222,7 @@ export default class Chat extends React.Component {
   // only render the input when user is online (avoiding sending mssgs when user is offline)
   renderInputToolbar(props) {
     if (this.state.isConnected == false) {
-    } else{
+    } else {
       return (
         <InputToolbar
         {...props} 
