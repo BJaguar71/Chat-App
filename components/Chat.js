@@ -15,6 +15,9 @@ import { Bubble, GiftedChat } from "react-native-gifted-chat";
 import firebase from 'firebase';
 import firestore from 'firebase';
 
+// import AsyncStorage
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 export default class Chat extends React.Component {
   // State initializing
