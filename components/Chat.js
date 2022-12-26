@@ -184,6 +184,9 @@ export default class Chat extends React.Component {
     }),
     () => {
       this.addMessage();
+
+      // add a callback function to save new message when sent
+      this.saveMessages();
     });
   }
 
