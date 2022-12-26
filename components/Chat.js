@@ -94,6 +94,10 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
+
+    // load messages from asyncStorage
+    this.getMessages();
+
     // creating a references to messages in database
     this.referenceChatMessages = firebase
       .firestore()
