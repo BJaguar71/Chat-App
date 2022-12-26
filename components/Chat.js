@@ -2,7 +2,6 @@ import React from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   StyleSheet,
   Platform,
   KeyboardAvoidingView,
@@ -11,43 +10,119 @@ import {
 // importing Gifted-Chat library
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
+
+// importing firebase
+import firebase from 'firebase';
+import firestore from 'firebase';
+
+
 export default class Chat extends React.Component {
   // State initializing
   constructor() {
     super();
     this.state = {
-      message: [],
+      messages: [],
+      uid: 0,
+      user: {
+        _id: "",
+        avatar: "",
+        name: "",
+      },
+      loggedInText: "Please waite you're getting logged in.",
+      location: null,
     };
+
+
+    // web app's Firebase configuration
+
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: "AIzaSyAVRku-7M4i87xTHqT3Zcf0m1uUF_NIwQY",
+        authDomain: "chatapp-f248f.firebaseapp.com",
+        projectId: "chatapp-f248f",
+        storageBucket: "chatapp-f248f.appspot.com",
+        messagingSenderId: "153293793325",
+        appId: "1:153293793325:web:5649b8c21d0314551d70a4",
+      });
+    }
+
+    this.referenceChatMessages = firebase.firestore().collection("messages");
   }
+
+
   componentDidMount() {
-    // setting the state with static message to be able to see each UI element displayed on the screen right away
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: "Hello developer",
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: "React Native",
-            avatar: "https://placeimg.com/140/140/any",
-          },
+    // creating a references to messages in database
+    this.referenceChatMessages = firebase
+      .firestore()
+      .collection("messages");
+
+    // authentication
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        firebase.auth().signInAnonymously();
+      }
+      this.setState({
+        uid: user.uid,
+        messages: [],
+        user: {
+          _id: user._id,
+          name: user.name,
         },
-        // adding system message
-        {
-          _id: 2,
-          text: "You've entered the Chat.",
-          createdAt: new Date(),
-          system: true,
-        },
-      ],
+        loggedInText: "",
+      });
+      // reference to the firestore to get the collection
+      this.unsubscribe = this.referenceChatMessages
+        .orderBy("createdAt", "desc")
+        .onSnapshot(this.onCollectionUpdate);
     });
   }
+
+  componentWillUnmount() {
+    // to stop receiving updates about the collection
+    this.unsubscribe();
+    this.authUnsubscribe();
+  }
+  // add new messages to the database
+  addMessage = () => {
+    const message = this.state.messages[0];
+    this.referenceChatMessages.add({
+      _id: message._id,
+      text: message.text || "",
+      createdAt: message.createdAt,
+      user: message.user,
+      avatar: message.avatar || null,
+      location: message.location || null,
+    });
+  };
+
+  // when users send new messages:
+  onCollectionUpdate = (querySnapshot) => {
+    const messages = [];
+    //go through each document
+    querySnapshot.forEach((doc) => {
+      // get the QueryDocumentSnapshot's data
+      let data = doc.data();
+      messages.push({
+        _id: data._id,
+        text: data.text,
+        createdAt: data.createdAt.toDate(),
+        user: data.user,
+        avatar: data.avatar,
+        location: data.location || null,
+      });
+    });
+    this.setState({
+      messages,
+    });
+  };
   // to append new messages to the message object
   onSend(messages = []) {
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages),
-    }));
+    }),
+    () => {
+      this.addMessage();
+    });
   }
 
   // creating renderBubble function
@@ -75,13 +150,15 @@ export default class Chat extends React.Component {
 
     return (
       <View style={{ flex: 1, backgroundColor: color }}>
+        <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
         <GiftedChat
           // adding renderBubble prop to change sender's bubble color
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
-            _id: 1,
+            _id: this.state.uid,
+            avatar: '',
           }}
           // accessibility props
           accessible={true}
@@ -108,4 +185,8 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 24,
   },
+  loggedInText: {
+    textAlign: "center",
+    color: "white",
+  }
 });
