@@ -11,7 +11,7 @@ import {
 import { Bubble, GiftedChat } from "react-native-gifted-chat";
 
 
-// importing firebase
+// import firebase
 import firebase from 'firebase';
 import firestore from 'firebase';
 
