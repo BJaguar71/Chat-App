@@ -22,6 +22,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 
 export default class Chat extends React.Component {
+
   // State initializing
   constructor() {
     super();
@@ -40,7 +41,6 @@ export default class Chat extends React.Component {
 
 
     // web app's Firebase configuration
-
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyAVRku-7M4i87xTHqT3Zcf0m1uUF_NIwQY",
@@ -130,7 +130,9 @@ export default class Chat extends React.Component {
           avatar: "https://placeimg.com/140/140/any",
         },
         loggedInText: "",
+
       });
+
       // reference to the firestore to get the collection
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
@@ -139,10 +141,12 @@ export default class Chat extends React.Component {
   }
 
   componentWillUnmount() {
+
     // to stop receiving updates about the collection
     this.unsubscribe();
     this.authUnsubscribe();
   }
+
   // add new messages to the database
   addMessage = () => {
     const message = this.state.messages[0];
@@ -160,8 +164,10 @@ export default class Chat extends React.Component {
   onCollectionUpdate = (querySnapshot) => {
     if (!this.state.isConnected) return;
     const messages = [];
+
     //go through each document
     querySnapshot.forEach((doc) => {
+
       // get the QueryDocumentSnapshot's data
       let data = doc.data();
       messages.push({
@@ -177,6 +183,7 @@ export default class Chat extends React.Component {
       messages,
     });
   };
+
   // to append new messages to the message object
   onSend(messages = []) {
     this.setState((previousState) => ({
@@ -220,6 +227,7 @@ export default class Chat extends React.Component {
   render() {
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
+
     // takes the name from the variable above and give it to the title of the Chat screen
     this.props.navigation.setOptions({ title: name });
 
@@ -230,6 +238,7 @@ export default class Chat extends React.Component {
       <View style={{ flex: 1, backgroundColor: color }}>
         <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
         <GiftedChat
+
           // adding renderBubble prop to change sender's bubble color
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
@@ -238,11 +247,13 @@ export default class Chat extends React.Component {
             _id: this.state.uid,
             avatar: '',
           }}
+
           // accessibility props
           accessible={true}
           accessibilityLabel="Chat input field"
           accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
         />
+        
         {/* for android devices / to unhide text input when typing */}
         {Platform.OS === "android" ? (
           <KeyboardAvoidingView behavior="height" />
