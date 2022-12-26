@@ -55,6 +55,23 @@ export default class Chat extends React.Component {
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
 
+  // get all messages asynchronously 
+  async getMessages() {
+    let messages = " ";
+
+    // wrap the logic inside try
+    try {
+      messages = await AsyncStorage.getItem("messages") || [];
+
+      // update messages
+      this.setState({
+        messages: JSON.parse(messages)
+      });
+    } catch(error) {
+      console.log(error.messages);
+    }
+  };
+
 
   componentDidMount() {
     // creating a references to messages in database
