@@ -127,6 +127,7 @@ export default class Chat extends React.Component {
         user: {
           _id: user._id,
           name: user.name,
+          avatar: "https://placeimg.com/140/140/any",
         },
         loggedInText: "",
       });
