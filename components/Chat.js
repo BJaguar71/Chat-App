@@ -117,9 +117,11 @@ export default class Chat extends React.Component {
       .collection("messages");
 
     // authentication
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user, connection) => {
+      // check internet connection
+      if (connection && !user) {
         firebase.auth().signInAnonymously();
+        getMessages();
       }
       this.setState({
         uid: user.uid,
