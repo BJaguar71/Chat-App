@@ -109,6 +109,7 @@ export default class Chat extends React.Component {
         this.setState({
           isConnected: false,
         });
+        alert("check you internet connection.");
       }
     });
     
