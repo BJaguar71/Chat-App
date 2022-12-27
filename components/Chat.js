@@ -94,6 +94,8 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
+    // get all messages
+    this.getMessages();
 
     // delete messsage
     this.deleteMessages();
