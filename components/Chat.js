@@ -104,6 +104,7 @@ export default class Chat extends React.Component {
         this.setState({
           isConnected: true,
         });
+        firebase.auth().signInAnonymously();
       } else {
         this.setState({
           isConnected: false,
@@ -117,9 +118,9 @@ export default class Chat extends React.Component {
       .collection("messages");
 
     // authentication
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user, connection) => {
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
       // check internet connection
-      if (connection && !user) {
+      if (!user) {
         firebase.auth().signInAnonymously();
         getMessages();
       }
