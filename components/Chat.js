@@ -95,9 +95,6 @@ export default class Chat extends React.Component {
 
   componentDidMount() {
 
-    // load messages from asyncStorage
-    this.getMessages();
-
     // delete messsage
     this.deleteMessages();
 
