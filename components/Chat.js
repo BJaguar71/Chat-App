@@ -254,7 +254,7 @@ export default class Chat extends React.Component {
             _id: this.state.uid,
             avatar: '',
           }}
-
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
           // accessibility props
           accessible={true}
           accessibilityLabel="Chat input field"
