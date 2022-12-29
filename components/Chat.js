@@ -210,6 +210,8 @@ export default class Chat extends React.Component {
     this.setState({
       messages,
     });
+    // save the collcetion after is updated
+    this.saveMessages();
   };
 
   // to append new messages to the message object
