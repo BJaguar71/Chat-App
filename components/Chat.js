@@ -84,9 +84,11 @@ export default class Chat extends React.Component {
   async deleteMessages() {
     try {
       await AsyncStorage.removeItem("messages");
-      this.setState({
-        messages: [],
-      });
+      this.setState((previousState) => ({
+        messages: previousState.messages.filter(
+          messages._id !== messageIdToDelete
+        ),
+      }));
     } catch (error) {
       console.log(error.message);
     }
