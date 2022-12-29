@@ -11,8 +11,7 @@ import {
 import { Bubble, GiftedChat, InputToolbar, Clipboard, } from "react-native-gifted-chat";
 
 // import firebase
-import firebase from 'firebase';
-import firestore from 'firebase';
+import firebase from "firebase";
 
 // import AsyncStorage
 import AsyncStorage from "@react-native-async-storage/async-storage";
