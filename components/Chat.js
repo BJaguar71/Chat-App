@@ -128,49 +128,43 @@ export default class Chat extends React.Component {
     // get all messages
     this.getMessages();
 
-    // check the user's internet connection
+    // creating a references to messages in database
+    this.referenceChatMessages = firebase.firestore().collection("messages");
+
+    // reference to the firestore to get the collection
+    this.unsubscribe = this.referenceChatMessages
+      .orderBy("createdAt", "desc")
+      .onSnapshot(this.onCollectionUpdate);
+
+    // Check user's internet connection
     NetInfo.fetch().then((connection) => {
       if (connection.isConnected) {
+        // authentication
+        this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+          // check internet connection
+          if (!user) {
+            firebase.auth().signInAnonymously();
+          }
+          this.setState({
+            uid: user.uid,
+            user: {
+              _id: user._id,
+              name: user.name,
+              avatar: "https://placeimg.com/140/140/any",
+            },
+            loggedInText: "",
+          });
+        });
         this.setState({
           isConnected: true,
         });
-        firebase.auth().signInAnonymously();
+        // firebase.auth().signInAnonymously();
       } else {
         this.setState({
           isConnected: false,
         });
-        alert("check you internet connection.");
+        alert("Check you internet connection.");
       }
-    });
-    
-    // creating a references to messages in database
-    this.referenceChatMessages = firebase
-      .firestore()
-      .collection("messages");
-
-    // authentication
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      // check internet connection
-      if (!user) {
-        firebase.auth().signInAnonymously();
-        getMessages();
-      }
-      this.setState({
-        uid: user.uid,
-        messages: [],
-        user: {
-          _id: user._id,
-          name: user.name,
-          avatar: "https://placeimg.com/140/140/any",
-        },
-        loggedInText: "",
-
-      });
-
-      // reference to the firestore to get the collection
-      this.unsubscribe = this.referenceChatMessages
-        .orderBy("createdAt", "desc")
-        .onSnapshot(this.onCollectionUpdate);
     });
   }
 
