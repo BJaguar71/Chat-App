@@ -94,6 +94,36 @@ export default class Chat extends React.Component {
     }
   }
 
+  // add message actions
+  // onLongPress() {
+  //   if (this.props.onLongPress) {
+  //     this.props.onLongPress(this.context, this.props.currentMassage);
+  //   } else {
+  //     if (this.props.currentMassage.text) {
+  //       const options = [
+  //         "Copy",
+  //         "Delete",
+  //         "Cancel",
+  //       ];
+  //       const cancelButtonIndex = options.length - 1;
+  //       this.context.actionSheet().showActionSheetWithOptions({
+  //         options,
+  //         cancelButtonIndex,
+  //       },
+  //       (buttonIndex) => {
+  //         switch (buttonIndex) {
+  //           case 0:
+  //             Clipboard.setString(this.props.currentMassage.text);
+  //             break;
+  //           case 1:
+  //             this.deleteMessages();
+  //             break;
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
+
   componentDidMount() {
     // get all messages
     this.getMessages();
@@ -248,6 +278,10 @@ export default class Chat extends React.Component {
             avatar: "",
           }}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
+          // calling onLongPress/ message actions
+          // onLongPress={() => {
+          //   this.onLongPress();
+          // }}
           // accessibility props
           accessible={true}
           accessibilityLabel="Chat input field"
