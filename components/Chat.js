@@ -20,7 +20,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 
 export default class Chat extends React.Component {
-
   // State initializing
   constructor() {
     super();
@@ -37,7 +36,6 @@ export default class Chat extends React.Component {
       location: null,
     };
 
-
     // web app's Firebase configuration
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -53,25 +51,25 @@ export default class Chat extends React.Component {
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
 
-  // get all messages asynchronously 
+  // get all messages asynchronously
   async getMessages() {
     let messages = " ";
 
     // wrap the logic inside try
     try {
-      messages = await AsyncStorage.getItem("messages") || [];
+      messages = (await AsyncStorage.getItem("messages")) || [];
 
       // update messages
       this.setState({
-        messages: JSON.parse(messages)
+        messages: JSON.parse(messages),
       });
-    } catch(error) {
+    } catch (error) {
       console.log(error.messages);
     }
-  };
+  }
 
-   // save new messages
-   async saveMessages() {
+  // save new messages
+  async saveMessages() {
     try {
       await AsyncStorage.setItem("messages", JSON.stringify(this.state.messages));
     } catch(error) {
@@ -142,7 +140,6 @@ export default class Chat extends React.Component {
   }
 
   componentWillUnmount() {
-
     // to stop receiving updates about the collection
     this.unsubscribe();
     this.authUnsubscribe();
@@ -168,7 +165,6 @@ export default class Chat extends React.Component {
 
     //go through each document
     querySnapshot.forEach((doc) => {
-
       // get the QueryDocumentSnapshot's data
       let data = doc.data();
       messages.push({
@@ -216,16 +212,11 @@ export default class Chat extends React.Component {
     );
   }
 
-
   // only render the input when user is online (avoiding sending mssgs when user is offline)
   renderInputToolbar(props) {
     if (this.state.isConnected == false) {
     } else {
-      return (
-        <InputToolbar
-        {...props} 
-        />
-      );
+      return <InputToolbar {...props} />;
     }
   }
 
@@ -243,14 +234,13 @@ export default class Chat extends React.Component {
       <View style={{ flex: 1, backgroundColor: color }}>
         <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
         <GiftedChat
-
           // adding renderBubble prop to change sender's bubble color
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
             _id: this.state.uid,
-            avatar: '',
+            avatar: "",
           }}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           // accessibility props
@@ -258,7 +248,6 @@ export default class Chat extends React.Component {
           accessibilityLabel="Chat input field"
           accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
         />
-        
         {/* for android devices / to unhide text input when typing */}
         {Platform.OS === "android" ? (
           <KeyboardAvoidingView behavior="height" />
@@ -282,5 +271,5 @@ const styles = StyleSheet.create({
   loggedInText: {
     textAlign: "center",
     color: "white",
-  }
+  },
 });
