@@ -8,8 +8,7 @@ import {
 } from "react-native";
 
 // importing Gifted-Chat library
-import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
-
+import { Bubble, GiftedChat, InputToolbar, Clipboard, } from "react-native-gifted-chat";
 
 // import firebase
 import firebase from 'firebase';
