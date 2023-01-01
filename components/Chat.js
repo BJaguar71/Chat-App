@@ -95,34 +95,34 @@ export default class Chat extends React.Component {
   }
 
   // add message actions
-  // onLongPress() {
-  //   if (this.props.onLongPress) {
-  //     this.props.onLongPress(this.context, this.props.currentMassage);
-  //   } else {
-  //     if (this.props.currentMassage.text) {
-  //       const options = [
-  //         "Copy",
-  //         "Delete",
-  //         "Cancel",
-  //       ];
-  //       const cancelButtonIndex = options.length - 1;
-  //       this.context.actionSheet().showActionSheetWithOptions({
-  //         options,
-  //         cancelButtonIndex,
-  //       },
-  //       (buttonIndex) => {
-  //         switch (buttonIndex) {
-  //           case 0:
-  //             Clipboard.setString(this.props.currentMassage.text);
-  //             break;
-  //           case 1:
-  //             this.deleteMessages();
-  //             break;
-  //         }
-  //       });
-  //     }
-  //   }
-  // }
+  onLongPress() {
+    if (this.props.onLongPress) {
+      this.props.onLongPress(this.context, this.props.currentMessage);
+    } else {
+      if (this.props.currentMessage.text) {
+        const options = [
+          "Copy",
+          "Delete",
+          "Cancel",
+        ];
+        const cancelButtonIndex = options.length - 1;
+        this.context.actionSheet().showActionSheetWithOptions({
+          options,
+          cancelButtonIndex,
+        },
+        (buttonIndex) => {
+          switch (buttonIndex) {
+            case 0:
+              Clipboard.setString(this.props.currentMessage.text);
+              break;
+            case 1:
+              this.deleteMessages();
+              break;
+          }
+        });
+      }
+    }
+  }
 
   componentDidMount() {
     // get all messages
