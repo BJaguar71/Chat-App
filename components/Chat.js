@@ -307,10 +307,6 @@ export default class Chat extends React.Component {
             avatar: "",
           }}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
-          // calling onLongPress/ message actions
-          // onLongPress={() => {
-          //   this.onLongPress();
-          // }}
           // accessibility props
           accessible={true}
           accessibilityLabel="Chat input field"
