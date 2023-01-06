@@ -41,6 +41,7 @@ export default class Chat extends React.Component {
       },
       isConnected: false,
       loggedInText: "Please waite you're getting logged in.",
+      image: null,
       location: null,
     };
 
