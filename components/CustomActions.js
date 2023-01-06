@@ -170,4 +170,8 @@ CustomActions.contextTypes = {
   actionSheet: PropTypes.func,
 };
 
+// why this defining is necessary? I don't get its point but when I don't have it here the app crashes with this error { ERROR  TypeError: undefined is not a function (near '..._this.props.showActionSheetWithOptions...')}
 
+// why all the elements in the render method in Chat.js should be inside an <ActioSheetProvider>? I added it when I was comparing my code with other students, because the + button didn't work before, after I added it it works. since it wasn't covered inside the task text, I need help to understand it.
+
+CustomActions = connectActionSheet(CustomActions);
