@@ -127,7 +127,7 @@ export default class CustomActions extends React.Component {
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextstyle]}>+</Text>
-          <Button title="Get my location" onPress={this.getLocation} />
+          {/* <Button title="Get my location" onPress={this.getLocation} />
           {this.state.location && (
             <MapView
               style={{ width: 300, height: 200 }}
@@ -138,7 +138,7 @@ export default class CustomActions extends React.Component {
                 longitudeDelta: 0.0421,
               }}
             />
-          )}
+          )} */}
         </View>
       </TouchableOpacity>
     );
@@ -172,3 +172,5 @@ const styles = StyleSheet.create({
 CustomActions.contextTypes = {
   actionSheet: PropTypes.func,
 };
+
+
