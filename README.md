@@ -1,5 +1,6 @@
 ## Chat APP:iphone:
-This is native mobile app build with React Native, Expo as well as the Google Firestore Database.
+This is native mobile app build with React Native, Expo as well as the Google Firestore Database. The users well be abale to choose their a color from for the chat screen background and also a name to start chattingthat will be shown at the top of the chat screen.
+The chats will be saved both in Google Firestore databse as well as the user's device storage so that the user can see previous massages while they're offline. The app provide an Anonymously sign in as its user authentication.
 
 ## Key Features
 App's features:
@@ -12,6 +13,9 @@ App's features:
 - React Native 
 - Expo 
 - GiftedChat
+- Google Firestore database
+- AsyncStorage
+- NetInfo
 
 ## Setting up development environment:
 1. Clone the repository from [here](https://github.com/BJaguar71/Chat-App)
