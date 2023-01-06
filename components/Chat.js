@@ -22,7 +22,8 @@ import NetInfo from "@react-native-community/netinfo";
 import CustomActions from "./CustomActions";
 
 // import MapView from "react-native-maps";
-import { Constants, MapView, Location, Permissions } from 'expo';
+import MapView from 'react-native-maps';
+
 
 
 export default class Chat extends React.Component {
