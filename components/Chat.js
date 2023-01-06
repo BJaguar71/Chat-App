@@ -298,30 +298,32 @@ export default class Chat extends React.Component {
     let color = this.props.route.params.color;
 
     return (
-      <View style={{ flex: 1, backgroundColor: color }}>
-        <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
-        <GiftedChat
-          // adding renderBubble prop to change sender's bubble color
-          renderBubble={this.renderBubble.bind(this)}
-          messages={this.state.messages}
-          onSend={(messages) => this.onSend(messages)}
-          user={{
-            _id: this.state.uid,
-            avatar: "",
-          }}
-          renderInputToolbar={this.renderInputToolbar.bind(this)}
-          renderActions={this.renderCustomActions}
-          renderCustomView={this.renderCustomView}
-          // accessibility props
-          accessible={true}
-          accessibilityLabel="Chat input field"
-          accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
-        />
-        {/* for android devices / to unhide text input when typing */}
-        {Platform.OS === "android" ? (
-          <KeyboardAvoidingView behavior="height" />
-        ) : null}
-      </View>
+      <ActionSheetProvider>
+        <View style={{ flex: 1, backgroundColor: color }}>
+          <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
+          <GiftedChat
+            // adding renderBubble prop to change sender's bubble color
+            renderBubble={this.renderBubble.bind(this)}
+            messages={this.state.messages}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: this.state.uid,
+              avatar: "https://placeimg.com/140/140/any",
+            }}
+            renderInputToolbar={this.renderInputToolbar.bind(this)}
+            renderActions={this.renderCustomActions}
+            renderCustomView={this.renderCustomView}
+            // accessibility props
+            accessible={true}
+            accessibilityLabel="Chat input field"
+            accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
+          />
+          {/* for android devices / to unhide text input when typing */}
+          {Platform.OS === "android" ? (
+            <KeyboardAvoidingView behavior="height" />
+          ) : null}
+        </View>
+      </ActionSheetProvider>
     );
   }
 }
