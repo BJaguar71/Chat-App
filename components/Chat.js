@@ -193,7 +193,7 @@ export default class Chat extends React.Component {
       text: message.text || "",
       createdAt: message.createdAt,
       user: message.user,
-      avatar: message.avatar || null,
+      image: message.image || null,
       location: message.location || null,
     });
   };
@@ -212,7 +212,7 @@ export default class Chat extends React.Component {
         text: data.text,
         createdAt: data.createdAt.toDate(),
         user: data.user,
-        avatar: data.avatar,
+        image: data.image,
         location: data.location || null,
       });
     });
