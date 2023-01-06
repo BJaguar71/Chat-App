@@ -70,7 +70,7 @@ export default class CustomActions extends React.Component {
       "Cancel",
     ];
     const cancelButtonIndex = options.length - 1;
-    this.context.actionSheet().showActionSheetWithOptions(
+    this.props.showActionSheetWithOptions(
       {
         options,
         cancelButtonIndex,
