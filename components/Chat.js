@@ -19,6 +19,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 // import netinfo package
 import NetInfo from "@react-native-community/netinfo";
 
+import CustomActions from "./CustomActions";
+
 export default class Chat extends React.Component {
   // State initializing
   constructor() {
