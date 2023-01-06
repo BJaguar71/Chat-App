@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { TouchableOpacity, View, Text, StyleSheet, Button } from "react-native";
+import { connectActionSheet } from '@expo/react-native-action-sheet';
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import * as MediaLibrary from "expo-media-library";
