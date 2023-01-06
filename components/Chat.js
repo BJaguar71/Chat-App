@@ -24,6 +24,7 @@ import CustomActions from "./CustomActions";
 // import MapView from "react-native-maps";
 import MapView from 'react-native-maps';
 
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 
 export default class Chat extends React.Component {
