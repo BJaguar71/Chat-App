@@ -156,6 +156,7 @@ export default class Chat extends React.Component {
           }
           this.setState({
             uid: user.uid,
+            messages: [],
             user: {
               _id: user._id,
               name: user.name,
@@ -189,10 +190,11 @@ export default class Chat extends React.Component {
   addMessage = () => {
     const message = this.state.messages[0];
     this.referenceChatMessages.add({
+      uid: this.state.uid,
       _id: message._id,
       text: message.text || "",
       createdAt: message.createdAt,
-      user: message.user,
+      user: this.state.user,
       image: message.image || null,
       location: message.location || null,
     });
@@ -211,8 +213,13 @@ export default class Chat extends React.Component {
         _id: data._id,
         text: data.text,
         createdAt: data.createdAt.toDate(),
-        user: data.user,
+        user: {
+          _id: data.user._id,
+          name: data.user.name,
+          avatar: data.user.avatar || "",
+        },
         location: data.location || null,
+        image: data.image || null,
       });
     });
     this.setState({
