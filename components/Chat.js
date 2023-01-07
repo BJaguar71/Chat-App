@@ -158,17 +158,15 @@ export default class Chat extends React.Component {
             uid: user.uid,
             messages: [],
             user: {
-              _id: user._id,
+              _id: user.uid,
               name: user.name,
               avatar: "https://placeimg.com/140/140/any",
             },
             loggedInText: "",
+            isConnected: true,
           });
         });
-        this.setState({
-          isConnected: true,
-        });
-        // firebase.auth().signInAnonymously();
+
       } else {
         this.setState({
           isConnected: false,
@@ -210,12 +208,15 @@ export default class Chat extends React.Component {
     querySnapshot.forEach((doc) => {
       // get the QueryDocumentSnapshot's data
       let data = doc.data();
+
+      console.log(data);
+
       messages.push({
         _id: data._id,
         text: data.text,
         createdAt: data.createdAt.toDate(),
         user: {
-          _id: user ? user._id : "",
+          _id: data.user ? data.user._id : this.state.uid,
           name: data.user.name,
           avatar: data.user.avatar || "",
         },
