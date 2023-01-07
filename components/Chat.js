@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 // importing Gifted-Chat library
-import { Bubble, GiftedChat, InputToolbar, Clipboard, } from "react-native-gifted-chat";
+import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 
 // import firebase
 import firebase from "firebase";
@@ -173,6 +173,7 @@ export default class Chat extends React.Component {
         this.setState({
           isConnected: false,
         });
+        console.log(this.state);
         alert("Check you internet connection.");
       }
     });
@@ -214,7 +215,7 @@ export default class Chat extends React.Component {
         text: data.text,
         createdAt: data.createdAt.toDate(),
         user: {
-          _id: data.user._id,
+          _id: user ? user._id : "",
           name: data.user.name,
           avatar: data.user.avatar || "",
         },
