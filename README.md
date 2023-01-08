@@ -37,9 +37,10 @@ The chats will be saved both in Google Firestore databse as well as
     - Media Library
 
 - Google Firestore database
-    --[stting up the database](https://firebase.google.com/docs/web/setup)--
+    - *[stting up the database](https://firebase.google.com/docs/web/setup)*
 
---To install dependencies--:
+*To install dependencies*:
+    
     `npm install`
 
 
@@ -57,3 +58,16 @@ The chats will be saved both in Google Firestore databse as well as
 - For Windows and Linux: Install [Android Studio](https://developer.android.com/studio).
 - For more information how to set up an emulator, look [here](https://docs.expo.dev/workflow/android-studio-emulator/?redirected)
 - For Mac: Install [XCode](https://developer.apple.com/xcode/)
+
+## Screen Captures ##
+
+**Start Screen**
+
+![This is a screenshot of the Start screen](/assets/start.jpg)
+
+**Chat Screen**
+![This is screenshot of the Chat screen](/assets/chat.jpg)
+
+**Action Sheet / Communication Features**
+
+![This is a screenshot of the communication features inside the custom action sheet](/assets/features.jpg)
