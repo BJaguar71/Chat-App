@@ -61,13 +61,8 @@ The chats will be saved both in Google Firestore databse as well as
 
 ## Screen Captures ##
 
-**Start Screen**
-
 ![This is a screenshot of the Start screen](/assets/start.jpg)
 
-**Chat Screen**
 ![This is screenshot of the Chat screen](/assets/chat.jpg)
-
-**Action Sheet / Communication Features**
 
 ![This is a screenshot of the communication features inside the custom action sheet](/assets/features.jpg)
