@@ -58,6 +58,36 @@ export default class CustomActions extends React.Component {
     }
   };
 
+  // function to upload image mssgs to database
+  uploadImageFetch = async (uri) => {
+    const blob = await new Promise((resolve, reject) => {
+      // create new XMLHttpRequest and set its respose type to blob
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function(e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
+    });
+    
+    const imageNameBefore = uri.split("/");
+    const imageName = imageNameBefore[imageNameBefore.length - 1];
+
+    // reference to the storage
+    const ref = firebase.storage().ref().child(`images/${imageName}`);
+    const snapshot = await ref.put(blob);
+    // close connection agai
+    blob.close();
+
+    // retrive the image url from server
+    return await snapshot.ref.getDownloadURL();
+  };
+
   // action sheet func
   onActionPress = () => {
     const options = [
