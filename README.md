@@ -37,11 +37,11 @@ The chats will be saved both in Google Firestore databse as well as
     - Media Library
 
 - Google Firestore database
-    - *[stting up the database](https://firebase.google.com/docs/web/setup)*
+    - *[setting up the database](https://firebase.google.com/docs/web/setup)*
 
 *To install dependencies*:
     
-    `npm install`
+    `npm i`
 
 
 ## Setting up development environment:
