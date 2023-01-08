@@ -154,18 +154,6 @@ export default class CustomActions extends React.Component {
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextstyle]}>+</Text>
-          {/* <Button title="Get my location" onPress={this.getLocation} />
-          {this.state.location && (
-            <MapView
-              style={{ width: 300, height: 200 }}
-              region={{
-                latitude: this.state.location.coords.latitude,
-                longitude: this.state.location.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-            />
-          )} */}
         </View>
       </TouchableOpacity>
     );
@@ -199,9 +187,5 @@ const styles = StyleSheet.create({
 CustomActions.contextTypes = {
   actionSheet: PropTypes.func,
 };
-
-// why this defining is necessary? I don't get its point but when I don't have it here the app crashes with this error { ERROR  TypeError: undefined is not a function (near '..._this.props.showActionSheetWithOptions...')}
-
-// why all the elements in the render method in Chat.js should be inside an <ActioSheetProvider>? I added it when I was comparing my code with other students, because the + button didn't work before, after I added it it works. since it wasn't covered inside the task text, I need help to understand it.
 
 CustomActions = connectActionSheet(CustomActions);
