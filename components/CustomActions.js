@@ -28,7 +28,7 @@ export default class CustomActions extends React.Component {
         }).catch((error) => console.log(error));
 
         if (!result.canceled) {
-          const imageUrl = await this.uploadImageFetch(result.uri);
+          const imageUrl = await this.uploadImageFetch(result.assets[0].uri);
           this.props.onSend({
             image: imageUrl,
           });
