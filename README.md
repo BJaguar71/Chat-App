@@ -5,7 +5,7 @@ The chats will be saved both in Google Firestore databse as well as
 ## Key Features
 
 - **Start screen**: where the users can write their name and choose a background color for the chat screen.
-- **redirecting through screens**: the users will be able to chat screen from the start screen and opposit. 
+- **Redirecting through screens**: the users will be able to chat screen from the start screen and opposit. 
 - **Chat screen**: where the user can chat. at the top of the screen (title) users will see the name that they've written in the input inside the Start screen. 
 - **Real-Time storage**: The app uses Google Firestore as its database and data will be stored in real-time. 
 - **Client-Side Storage**: Data will be saved into the user's device storage as well, therefor all datas can be accessed offline by the user. 
