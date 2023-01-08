@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 // importing Gifted-Chat library
-import { Bubble, GiftedChat, InputToolbar, Clipboard, } from "react-native-gifted-chat";
+import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 
 // import firebase
 import firebase from "firebase";
@@ -18,6 +18,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // import netinfo package
 import NetInfo from "@react-native-community/netinfo";
+
+import CustomActions from "./CustomActions";
+
+// import MapView from "react-native-maps";
+import MapView from 'react-native-maps';
+
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+
 
 export default class Chat extends React.Component {
   // State initializing
@@ -33,6 +41,7 @@ export default class Chat extends React.Component {
       },
       isConnected: false,
       loggedInText: "Please waite you're getting logged in.",
+      image: null,
       location: null,
     };
 
@@ -94,35 +103,35 @@ export default class Chat extends React.Component {
     }
   }
 
-  // add message actions
-  onLongPress() {
-    if (this.props.onLongPress) {
-      this.props.onLongPress(this.context, this.props.currentMessage);
-    } else {
-      if (this.props.currentMessage.text) {
-        const options = [
-          "Copy",
-          "Delete",
-          "Cancel",
-        ];
-        const cancelButtonIndex = options.length - 1;
-        this.context.actionSheet().showActionSheetWithOptions({
-          options,
-          cancelButtonIndex,
-        },
-        (buttonIndex) => {
-          switch (buttonIndex) {
-            case 0:
-              Clipboard.setString(this.props.currentMessage.text);
-              break;
-            case 1:
-              this.deleteMessages();
-              break;
-          }
-        });
-      }
-    }
-  }
+  // // add message actions
+  // onLongPress() {
+  //   if (this.props.onLongPress) {
+  //     this.props.onLongPress(this.context, this.props.currentMessage);
+  //   } else {
+  //     if (this.props.currentMessage.text) {
+  //       const options = [
+  //         "Copy",
+  //         "Delete",
+  //         "Cancel",
+  //       ];
+  //       const cancelButtonIndex = options.length - 1;
+  //       this.context.actionSheet().showActionSheetWithOptions({
+  //         options,
+  //         cancelButtonIndex,
+  //       },
+  //       (buttonIndex) => {
+  //         switch (buttonIndex) {
+  //           case 0:
+  //             Clipboard.setString(this.props.currentMessage.text);
+  //             break;
+  //           case 1:
+  //             this.deleteMessages();
+  //             break;
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 
   componentDidMount() {
     // get all messages
@@ -141,28 +150,28 @@ export default class Chat extends React.Component {
       if (connection.isConnected) {
         // authentication
         this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-          // check internet connection
+          // check user
           if (!user) {
             firebase.auth().signInAnonymously();
           }
           this.setState({
             uid: user.uid,
+            messages: [],
             user: {
-              _id: user._id,
-              name: user.name,
+              _id: user.uid,
+              name: user.displayName || this.props.route.params.name,
               avatar: "https://placeimg.com/140/140/any",
             },
             loggedInText: "",
+            isConnected: true,
           });
         });
-        this.setState({
-          isConnected: true,
-        });
-        // firebase.auth().signInAnonymously();
+
       } else {
         this.setState({
           isConnected: false,
         });
+        console.log(this.state);
         alert("Check you internet connection.");
       }
     });
@@ -179,12 +188,14 @@ export default class Chat extends React.Component {
   // add new messages to the database
   addMessage = () => {
     const message = this.state.messages[0];
+   
     this.referenceChatMessages.add({
+      uid: this.state.uid,
       _id: message._id,
       text: message.text || "",
       createdAt: message.createdAt,
-      user: message.user,
-      avatar: message.avatar || null,
+      user: this.state.user,
+      image: message.image || null,
       location: message.location || null,
     });
   };
@@ -198,13 +209,19 @@ export default class Chat extends React.Component {
     querySnapshot.forEach((doc) => {
       // get the QueryDocumentSnapshot's data
       let data = doc.data();
+
+
       messages.push({
         _id: data._id,
         text: data.text,
         createdAt: data.createdAt.toDate(),
-        user: data.user,
-        avatar: data.avatar,
+        user: {
+          _id: data.user ? data.user._id : this.state.uid,
+          name: data.user.name || "unknow user",
+          avatar: data.user.avatar || "",
+        },
         location: data.location || null,
+        image: data.image || null,
       });
     });
     this.setState({
@@ -255,6 +272,29 @@ export default class Chat extends React.Component {
     }
   }
 
+  // add custom action button
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
+  // custom mapview
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        />
+      );
+    }
+    return null;
+  }
   render() {
     // to show user's name on the top of the chat page
     let name = this.props.route.params.name;
@@ -266,32 +306,32 @@ export default class Chat extends React.Component {
     let color = this.props.route.params.color;
 
     return (
-      <View style={{ flex: 1, backgroundColor: color }}>
-        <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
-        <GiftedChat
-          // adding renderBubble prop to change sender's bubble color
-          renderBubble={this.renderBubble.bind(this)}
-          messages={this.state.messages}
-          onSend={(messages) => this.onSend(messages)}
-          user={{
-            _id: this.state.uid,
-            avatar: "",
-          }}
-          renderInputToolbar={this.renderInputToolbar.bind(this)}
-          // calling onLongPress/ message actions
-          // onLongPress={() => {
-          //   this.onLongPress();
-          // }}
-          // accessibility props
-          accessible={true}
-          accessibilityLabel="Chat input field"
-          accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
-        />
-        {/* for android devices / to unhide text input when typing */}
-        {Platform.OS === "android" ? (
-          <KeyboardAvoidingView behavior="height" />
-        ) : null}
-      </View>
+      <ActionSheetProvider>
+        <View style={{ flex: 1, backgroundColor: color }}>
+          <Text style={styles.loggedInText}>{this.state.loggedInText}</Text>
+          <GiftedChat
+            // adding renderBubble prop to change sender's bubble color
+            renderBubble={this.renderBubble.bind(this)}
+            messages={this.state.messages}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: this.state.uid,
+              avatar: "https://placeimg.com/140/140/any",
+            }}
+            renderInputToolbar={this.renderInputToolbar.bind(this)}
+            renderActions={this.renderCustomActions}
+            renderCustomView={this.renderCustomView}
+            // accessibility props
+            accessible={true}
+            accessibilityLabel="Chat input field"
+            accessibilityHint="Here you can enter the message. afterwards, you can press send on the right side."
+          />
+          {/* for android devices / to unhide text input when typing */}
+          {Platform.OS === "android" ? (
+            <KeyboardAvoidingView behavior="height" />
+          ) : null}
+        </View>
+      </ActionSheetProvider>
     );
   }
 }
