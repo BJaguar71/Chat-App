@@ -3,7 +3,7 @@ This is a Real-Time mobile app build with React Native, Expo as well as the Goog
 The chats will be saved both in Google Firestore databse as well as 
 
 ## Key Features
-App's features:
+
 - **Start screen**: where the users can write their name and choose a background color for the chat screen.
 - **redirecting through screens**: the users will be able to chat screen from the start screen and opposit. 
 - **Chat screen**: where the user can chat. at the top of the screen (title) users will see the name that they've written in the input inside the Start screen. 
@@ -37,7 +37,7 @@ App's features:
     - Media Library
 
 - Google Firestore database
-    [--stting up the database--](https://firebase.google.com/docs/web/setup)
+    --[stting up the database](https://firebase.google.com/docs/web/setup)--
 
 --To install dependencies--:
     `npm install`
