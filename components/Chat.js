@@ -150,7 +150,7 @@ export default class Chat extends React.Component {
       if (connection.isConnected) {
         // authentication
         this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-          // check internet connection
+          // check user
           if (!user) {
             firebase.auth().signInAnonymously();
           }
@@ -159,7 +159,7 @@ export default class Chat extends React.Component {
             messages: [],
             user: {
               _id: user.uid,
-              name: user.name,
+              name: user.displayName || this.props.route.params.name,
               avatar: "https://placeimg.com/140/140/any",
             },
             loggedInText: "",
@@ -188,6 +188,7 @@ export default class Chat extends React.Component {
   // add new messages to the database
   addMessage = () => {
     const message = this.state.messages[0];
+   
     this.referenceChatMessages.add({
       uid: this.state.uid,
       _id: message._id,
@@ -209,7 +210,6 @@ export default class Chat extends React.Component {
       // get the QueryDocumentSnapshot's data
       let data = doc.data();
 
-      console.log(data);
 
       messages.push({
         _id: data._id,
@@ -217,7 +217,7 @@ export default class Chat extends React.Component {
         createdAt: data.createdAt.toDate(),
         user: {
           _id: data.user ? data.user._id : this.state.uid,
-          name: data.user.name,
+          name: data.user.name || "unknow user",
           avatar: data.user.avatar || "",
         },
         location: data.location || null,
